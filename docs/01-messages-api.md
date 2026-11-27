@@ -22,7 +22,7 @@ Run `python labs/lab01_api.py` after configuring `ANTHROPIC_API_KEY` and `ANTHRO
 2. Where does the response report token usage?
 3. Why must an authorization failure not be retried as though it were transient?
 
-Reference: https://platform.claude.com/docs/en/api/messages
+Reference: <https://platform.claude.com/docs/en/api/messages>
 
 ## Structured Outputs
 

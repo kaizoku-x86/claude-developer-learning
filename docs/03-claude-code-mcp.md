@@ -18,4 +18,4 @@
 
 Run `python labs/lab03_mcp.py` in an MCP-compatible client; inspect tools, resources, and prompts. Add a read-only `list_incidents` tool with validated filters.
 
-References: https://modelcontextprotocol.io/docs/getting-started/intro and https://code.claude.com/docs/en/overview
+References: <https://modelcontextprotocol.io/docs/getting-started/intro> and <https://code.claude.com/docs/en/overview>

@@ -40,9 +40,9 @@
 
 ## Official references
 
-- https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices
-- https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview
-- https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons
+- <https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices>
+- <https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview>
+- <https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons>
 
 ## Four-technique debugging workflow
 

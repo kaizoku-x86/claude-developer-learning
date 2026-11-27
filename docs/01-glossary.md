@@ -52,9 +52,9 @@
 
 ## Official references
 
-- https://platform.claude.com/docs/en/build-with-claude/context-windows
-- https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons
-- https://platform.claude.com/docs/en/api/migration-2026-10-21
-- https://platform.claude.com/docs/en/models/overview
-- https://platform.claude.com/docs/en/build-with-claude/streaming
-- https://platform.claude.com/docs/en/build-with-claude/batch-processing
+- <https://platform.claude.com/docs/en/build-with-claude/context-windows>
+- <https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons>
+- <https://platform.claude.com/docs/en/api/migration-2026-10-21>
+- <https://platform.claude.com/docs/en/models/overview>
+- <https://platform.claude.com/docs/en/build-with-claude/streaming>
+- <https://platform.claude.com/docs/en/build-with-claude/batch-processing>

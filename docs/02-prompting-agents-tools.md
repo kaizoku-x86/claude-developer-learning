@@ -27,7 +27,7 @@ Specify the objective, context, boundaries, response format, and success criteri
 - Retrying forever or giving a diagnostic agent write access to production resources.
 
 Practice: `pytest -q tests/test_agent.py`.
-Reference: https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview
+Reference: <https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview>
 
 ## Debugging a prompt — support ticket classifier
 
@@ -116,7 +116,7 @@ Example tool descriptions, deliberately short and unambiguous:
 
 These are **original practice scenarios**, not questions taken from an official certification exam.
 
-**Scenario 1 — Root-cause identification (single choice)**
+#### Scenario 1 — Root-cause identification (single choice)
 
 > Claude selects `search_docs` although a complete answer appears in the current conversation. The two tools have overlapping descriptions. What is the most targeted first change?
 >
@@ -135,7 +135,7 @@ These are **original practice scenarios**, not questions taken from an official 
 
 </details>
 
-**Scenario 2 — Choosing a tool (single choice)**
+#### Scenario 2 — Choosing a tool (single choice)
 
 > The user asks about a product setting, but that setting is not described anywhere in the conversation. `get_context_summary` covers the existing conversation, while `search_docs` retrieves documentation. Which tool should Claude choose?
 >
@@ -154,7 +154,7 @@ These are **original practice scenarios**, not questions taken from an official 
 
 </details>
 
-**Scenario 3 — Choosing an architectural remedy (single choice)**
+#### Scenario 3 — Choosing an architectural remedy (single choice)
 
 > Two read-only tools continue to have essentially identical purposes, even after adding meaningful exclusions. Their authorization requirements are the same. What is a reasonable next design option?
 >
@@ -173,7 +173,7 @@ These are **original practice scenarios**, not questions taken from an official 
 
 </details>
 
-**Scenario 4 — Context availability (single choice)**
+#### Scenario 4 — Context availability (single choice)
 
 > The descriptions are clear, but an application has dropped earlier conversation turns before sending its next API request. Claude searches externally for information that appeared only in the discarded turns. What should the developer investigate first?
 >
@@ -199,7 +199,6 @@ These are **original practice scenarios**, not questions taken from an official 
 - Test ambiguous wording, missing history, and misleadingly similar tool names.
 - Measure **tool-selection accuracy** and unnecessary calls before and after editing descriptions.
 - Check that backend permissions still prevent unintended operations, regardless of the tool selected.
-
 
 ## Lab ideas
 
