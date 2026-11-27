@@ -19,7 +19,7 @@ python -m mkdocs serve
 python -m pytest -q
 ```
 
-Visit http://127.0.0.1:8000/ to explore the learning site.
+Visit <http://127.0.0.1:8000/> to explore the learning site.
 
 ## Publishing and contribution policy
 
