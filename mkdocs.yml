@@ -34,7 +34,9 @@ plugins:
   - mkdocs_quiz
 
 nav:
-  - Home: index.md
+  - Start Here:
+      - Course overview: index.md
+      - How to Read This Course: how-to-read.md
   - Modules:
       - Module 1 — API and Models:
           - Messages API: 01-messages-api.md

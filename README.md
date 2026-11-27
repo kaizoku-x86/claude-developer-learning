@@ -4,6 +4,10 @@ Independent, community-maintained study resources for Claude development: curate
 
 **Not official Anthropic certification content.** This project is not affiliated with or endorsed by Anthropic; practice questions are independently authored.
 
+## Getting started
+
+Read [How to Read This Course](docs/how-to-read.md) for the recommended study sequence and how to use modules, glossaries, labs, and interactive tests.
+
 ## Explore
 
 - [Complete study guide](https://kaizoku-x86.github.io/claude-developer-learning/)

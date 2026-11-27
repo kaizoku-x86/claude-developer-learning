@@ -2,6 +2,9 @@
 
 **Independent, community-authored study materials** for Claude development. This is not an official Anthropic course, and its practice questions are independently written.
 
+!!! tip "Start here: How to Read This Course"
+    New to the site? Read the [course guide](how-to-read.md) to see what each section contains, the recommended learning order, and how to combine reading, labs, and practice tests.
+
 ## Learning path
 
 | Section | Topics | Start here |
