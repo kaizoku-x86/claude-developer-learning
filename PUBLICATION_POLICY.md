@@ -49,6 +49,18 @@ Never copy other files merely because they are within `docs/`, `labs/`, or `test
 - Publication changes must be forward-only and use a new public commit. **Never** merge/fork/push the private branch or its Git history.
 - If validation fails or content is ambiguous, skip the affected file(s), do not force publication, and report the blocker.
 
+## Scheduled synchronization
+
+The private-to-public sync is performed by a **daily connected-GitHub automation** following this file and `scripts/export_reviewed.py`. It uses the connected account permissions; there is no repository secret granting the public site access to the private workspace. The public GitHub Actions workflows validate and deploy newly published commits. Revoking the GitHub connection or changing permissions may prevent future synchronization; failures must be reported rather than bypassed.
+
+To preview the same export locally with both repositories checked out, run:
+
+```bash
+python scripts/export_reviewed.py --source /path/to/private-checkout --destination .
+```
+
+Add `--apply` to write the validated allowlisted files. This exporter **never** executes Git operations or copies a Git directory.
+
 ## Publication checks
 
 1. Compare exact allowed source files with their public variants; apply the explicitly documented public wording adaptations.

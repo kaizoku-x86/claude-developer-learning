@@ -19,6 +19,8 @@ jobs:
           python-version: '3.11'
       - name: Install dependencies
         run: pip install -r requirements-docs.txt -r requirements-labs.txt
+      - name: Enforce public/private boundary
+        run: python scripts/check_public_tree.py
       - name: Run offline lab tests
         run: python -m pytest -q
       - name: Build documentation
