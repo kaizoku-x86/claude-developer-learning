@@ -1,0 +1,26 @@
+[
+  {
+    "id": "INC-101",
+    "namespace": "payments",
+    "pod": "payments-api-7d4c",
+    "symptom": "CrashLoopBackOff",
+    "reason": "missing environment variable DB_HOST",
+    "severity": "high"
+  },
+  {
+    "id": "INC-102",
+    "namespace": "payments",
+    "pod": "worker-88d",
+    "symptom": "OOMKilled",
+    "reason": "memory limit exceeded",
+    "severity": "critical"
+  },
+  {
+    "id": "INC-103",
+    "namespace": "frontend",
+    "pod": "web-123",
+    "symptom": "ImagePullBackOff",
+    "reason": "invalid image tag",
+    "severity": "medium"
+  }
+]
