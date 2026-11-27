@@ -28,6 +28,6 @@ Practice with immediate explanations. No Claude API key is needed.
 
 ## Licensing and references
 
-Original educational text is [CC BY 4.0](../LICENSE-DOCS.md); code is [MIT](../LICENSE). External documentation remains under its original license.
+Original educational text is [CC BY 4.0](https://github.com/kaizoku-x86/claude-developer-learning/blob/master/LICENSE-DOCS.md); code is [MIT](https://github.com/kaizoku-x86/claude-developer-learning/blob/master/LICENSE). External documentation remains under its original license.
 
 Official starting points: [Claude Platform](https://platform.claude.com/docs/en/home), [Claude Code](https://code.claude.com/docs/en/overview) and [MCP](https://modelcontextprotocol.io/docs/getting-started/intro).
