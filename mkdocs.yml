@@ -24,7 +24,6 @@ theme:
         name: Switch to light mode
   features:
     - navigation.tabs
-    - navigation.sections
     - navigation.indexes
     - navigation.top
     - search.suggest
@@ -36,34 +35,37 @@ plugins:
 
 nav:
   - Home: index.md
-  - Glossary:
-      - All modules: 00-general-glossary.md
-  - Module 1 — API and Models:
-      - Module 1 glossary: 01-glossary.md
-      - Messages API: 01-messages-api.md
-  - Module 2 — Prompting and Agents:
-      - Module 2 glossary: 02-glossary.md
-      - Tool Use and Agents: 02-prompting-agents-tools.md
-      - Structured Outputs: 02-structured-outputs.md
-      - Tool Selection guide: modules/02-tool-selection.md
-  - Module 3 — Claude Code and MCP:
-      - Module 3 glossary: 03-glossary.md
-      - Claude Code and MCP: 03-claude-code-mcp.md
-      - Claude Products: 03-claude-products.md
-  - Module 4 — Production:
-      - Governance glossary: 04-glossary.md
-      - Evals and Security: 04-production-evals-security.md
-  - Module 5 — Reuse:
-      - Module 5 glossary: 05-glossary.md
-      - Accelerators and IP: 05-accelerators-ip.md
-  - Practice:
-      - Quiz Overview: quizzes/index.md
-      - Tool Selection: quizzes/02-tool-selection.md
-      - Streaming and Tool Use: quizzes/02-streaming.md
-      - MCP Concepts: quizzes/03-mcp.md
-  - Labs: labs.md
-  - Capstone: 07-architecture-case.md
-
+  - Modules:
+      - Module 1 — API and Models:
+          - Messages API: 01-messages-api.md
+      - Module 2 — Prompting and Agents:
+          - Tool Use and Agents: 02-prompting-agents-tools.md
+          - Structured Outputs: 02-structured-outputs.md
+          - Tool Selection: modules/02-tool-selection.md
+      - Module 3 — Claude Code and MCP:
+          - Claude Code and MCP: 03-claude-code-mcp.md
+          - Claude Products: 03-claude-products.md
+      - Module 4 — Production:
+          - Evals and Security: 04-production-evals-security.md
+      - Module 5 — Reuse:
+          - Accelerators and IP: 05-accelerators-ip.md
+  - Glossaries:
+      - General glossary: 00-general-glossary.md
+      - Module 1: 01-glossary.md
+      - Module 2: 02-glossary.md
+      - Module 3: 03-glossary.md
+      - Module 4: 04-glossary.md
+      - Module 5: 05-glossary.md
+  - Labs:
+      - Lab overview: labs.md
+      - Architecture capstone: 07-architecture-case.md
+  - Tests:
+      - Quiz overview: quizzes/index.md
+      - Module 2:
+          - Tool Selection: quizzes/02-tool-selection.md
+          - Streaming and Tool Use: quizzes/02-streaming.md
+      - Module 3:
+          - MCP Concepts: quizzes/03-mcp.md
 markdown_extensions:
   - admonition
   - tables
