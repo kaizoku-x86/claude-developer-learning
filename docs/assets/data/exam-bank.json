@@ -38,17 +38,18 @@
       "id": "d1-03",
       "domain": 1,
       "module": 2,
-      "question": "A coordinator can ask two read-only tools for unrelated metrics. Neither result depends on the other. What is a reasonable optimization?",
+      "question": "Two independent read-only metrics tools can run in parallel. Which TWO practices are appropriate?",
       "options": [
-        "Run both independent calls concurrently",
-        "Force one result to become the other tool's input",
-        "Always create a different agent per metric",
-        "Repeat the first call until both results appear"
+        "Run both calls concurrently when neither depends on the other.",
+        "Invent a dependency by supplying one metric as input to the other.",
+        "Always launch a different autonomous agent for each metric.",
+        "Apply an execution budget and authorization checks to both calls."
       ],
       "correct": [
-        0
+        0,
+        3
       ],
-      "explanation": "Independent tool calls may run concurrently; dependency chains should remain sequential."
+      "explanation": "Independent calls may run concurrently, but authorization and bounded execution still apply."
     },
     {
       "id": "d1-04",
@@ -86,17 +87,18 @@
       "id": "d1-06",
       "domain": 1,
       "module": 2,
-      "question": "A diagnostic agent keeps requesting tools after many unsuccessful attempts. Which control directly limits runaway execution?",
+      "question": "An agent repeatedly retries after unsuccessful tool calls. Which TWO controls directly prevent runaway execution?",
       "options": [
-        "A maximum iteration and time budget",
-        "A larger context window",
-        "A longer tool description alone",
-        "An unbounded automatic retry loop"
+        "Enforce a maximum iteration or time budget.",
+        "Increase context size without changing termination rules.",
+        "Rely solely on longer tool descriptions.",
+        "Set tool-call budgets and an explicit abort policy."
       ],
       "correct": [
-        0
+        0,
+        3
       ],
-      "explanation": "Bounded iteration, time and tool budgets prevent runaway loops even when the model keeps requesting tools."
+      "explanation": "Termination budgets and abort criteria bound the loop even when the model keeps requesting work."
     },
     {
       "id": "d1-07",
@@ -118,17 +120,18 @@
       "id": "d1-08",
       "domain": 1,
       "module": 2,
-      "question": "Claude emits two tool_use blocks with different IDs in one assistant turn. What must the handler preserve?",
+      "question": "Claude returns two tool_use blocks with distinct IDs. Which TWO actions preserve a correct client-side tool loop?",
       "options": [
-        "Only the final tool call",
-        "A single shared tool_result ID",
-        "A distinct result linked to each original tool_use_id",
-        "A different fabricated ID for each retry"
+        "Keep only the final tool request.",
+        "Preserve the assistant response containing both tool_use blocks.",
+        "Return a separately linked tool_result for each call ID.",
+        "Invent replacement tool IDs for the returned results."
       ],
       "correct": [
+        1,
         2
       ],
-      "explanation": "Each tool_use ID must correspond to its own tool_result so the model can match calls and results."
+      "explanation": "Both original tool requests and correctly matched result IDs must survive the tool-use continuation."
     },
     {
       "id": "d1-09",
@@ -230,17 +233,18 @@
       "id": "d2-03",
       "domain": 2,
       "module": 1,
-      "question": "A streaming tool_use block contains partial JSON across multiple events. When should input be parsed as a complete call?",
+      "question": "Claude streams a tool's input as partial JSON fragments. Which TWO handler behaviors are safe?",
       "options": [
-        "After the first input_json_delta",
-        "After content_block_stop for the block",
-        "Only after the next user message",
-        "Before content_block_start is received"
+        "Execute after the first input_json_delta.",
+        "Accumulate input until content_block_stop and validate the completed JSON.",
+        "Keep incomplete input fragments out of committed, completed tool calls.",
+        "Treat each JSON fragment as an independent authorized tool request."
       ],
       "correct": [
-        1
+        1,
+        2
       ],
-      "explanation": "Accumulate input fragments until the content block closes before parsing and validating."
+      "explanation": "Stream fragments are buffered; the completed tool input is parsed and validated before execution."
     },
     {
       "id": "d2-04",
@@ -278,33 +282,35 @@
       "id": "d2-06",
       "domain": 2,
       "module": 1,
-      "question": "An assistant response contains a text block followed by two tool_use blocks. What should the application inspect?",
+      "question": "One assistant response contains prose and two tool_use blocks. Which TWO handler actions are appropriate?",
       "options": [
-        "Only the first content block",
-        "All content blocks and all tool-use requests",
-        "Only the plain text and ignore the tool calls",
-        "Only the block with the largest input"
+        "Process only the first block and discard the rest.",
+        "Inspect every content block and tool request.",
+        "Preserve the original tool-use IDs when returning results.",
+        "Keep only whichever tool call has the largest input."
       ],
       "correct": [
-        1
+        1,
+        2
       ],
-      "explanation": "Tool-use responses may contain multiple blocks, each of which must be handled appropriately."
+      "explanation": "Every relevant block must be considered, and tool results must reference the original request identifiers."
     },
     {
       "id": "d2-07",
       "domain": 2,
       "module": 1,
-      "question": "A rate-limited integration receives HTTP 429 from an API. Which retry strategy is most appropriate?",
+      "question": "A client receives HTTP 429 from an API. Which TWO retry practices are appropriate?",
       "options": [
-        "Retry as fast as possible without a limit",
-        "Use bounded exponential backoff and honor retry guidance",
-        "Treat every 429 as a permanent input validation error",
-        "Switch to sending the API key in the URL"
+        "Honor a Retry-After delay when the API provides one.",
+        "Use bounded exponential backoff with a retry limit.",
+        "Treat rate limiting as a permanent schema error.",
+        "Place the API key in a URL to bypass the limit."
       ],
       "correct": [
+        0,
         1
       ],
-      "explanation": "Rate limits generally call for bounded backoff and server-provided retry guidance rather than immediate flooding."
+      "explanation": "Rate-limit recovery should respect server guidance and apply bounded backoff instead of flooding the endpoint."
     },
     {
       "id": "d2-08",
@@ -358,17 +364,18 @@
       "id": "d2-11",
       "domain": 2,
       "module": 1,
-      "question": "A service requires machine-readable JSON matching a supported schema. Which approach most directly constrains generation?",
+      "question": "An application needs a supported JSON output structure with reliable downstream handling. Which TWO steps matter?",
       "options": [
-        "Ask for JSON in prose without validation",
-        "Use supported structured JSON output and validate business rules",
-        "Set response temperature to zero and omit a schema",
-        "Put the desired keys only in an unrelated tool description"
+        "Ask politely for JSON and assume it is guaranteed.",
+        "Use the API's supported structured-output mechanism.",
+        "Validate semantic and business constraints in application code.",
+        "Specify required JSON keys only in an unrelated tool description."
       ],
       "correct": [
-        1
+        1,
+        2
       ],
-      "explanation": "Schema-backed structured output constrains supported syntax; application-level semantic checks remain necessary."
+      "explanation": "Schema-backed output handles supported structural constraints; semantic rules remain a caller responsibility."
     },
     {
       "id": "d2-12",
@@ -502,17 +509,18 @@
       "id": "d3-03",
       "domain": 3,
       "module": 3,
-      "question": "A teammate wants Claude Code to modify only a subset of files. Which control is most relevant?",
+      "question": "A team wants Claude Code to edit only approved files. Which TWO safeguards support this boundary?",
       "options": [
-        "Explicit permissions and workspace boundaries",
-        "Changing the terminal color scheme",
-        "Adding unrelated examples to system prompts",
-        "Removing repository ownership information"
+        "Configure explicit file and tool permissions.",
+        "Change the terminal color to indicate approved access.",
+        "Restrict operations to the authorized workspace or directory.",
+        "Replace permission rules with a natural-language reminder."
       ],
       "correct": [
-        0
+        0,
+        2
       ],
-      "explanation": "Permissions and working boundaries enforce allowed operations; visual settings do not."
+      "explanation": "Permissions and scoped working directories enforce limits; UI appearance and prompt-only reminders do not."
     },
     {
       "id": "d3-04",
@@ -614,17 +622,18 @@
       "id": "d4-04",
       "domain": 4,
       "module": 4,
-      "question": "An agent produced the wrong answer after three tool calls. What evidence most helps debugging?",
+      "question": "An agent returns the wrong diagnosis after several tool calls. Which TWO kinds of evidence help debug the failure?",
       "options": [
-        "Structured traces of prompts, chosen tools, arguments and results",
-        "Only a screenshot of the final answer",
-        "An unverified statement that the model was confused",
-        "The repository's star count"
+        "A trace of prompts, tool arguments, and tool results.",
+        "Recorded stop reasons and original tool-use/result IDs.",
+        "An unsupported guess about what the model intended.",
+        "A count of repository stars unrelated to the run."
       ],
       "correct": [
-        0
+        0,
+        1
       ],
-      "explanation": "End-to-end traces identify where selection, execution, or result interpretation failed."
+      "explanation": "Execution traces and protocol metadata reveal where the tool loop or reasoning path failed."
     },
     {
       "id": "d4-05",
@@ -646,17 +655,18 @@
       "id": "d4-06",
       "domain": 4,
       "module": 4,
-      "question": "A unit test should verify a tool handler without contacting production infrastructure. How can it do that?",
+      "question": "A team tests a client-side tool handler without contacting production. Which TWO practices are appropriate?",
       "options": [
-        "Use controlled fixtures or mocked tool responses",
-        "Call production with administrator permissions",
-        "Skip assertions on returned tool IDs",
-        "Rely solely on the model's self-reported success"
+        "Use controlled fixtures or mocked tool responses.",
+        "Make privileged production calls from each unit test.",
+        "Assert that tool_result references match original tool_use IDs.",
+        "Treat the model's declaration of success as the only assertion."
       ],
       "correct": [
-        0
+        0,
+        2
       ],
-      "explanation": "Offline fixtures support deterministic, safe tests of tool-loop handling."
+      "explanation": "Offline fixtures and protocol-ID assertions provide deterministic, production-safe coverage."
     },
     {
       "id": "d4-07",
@@ -678,17 +688,18 @@
       "id": "d5-01",
       "domain": 5,
       "module": 1,
-      "question": "An API invoice rises after a team doubles repeated input tokens while output stays stable. Which data best identifies the cost driver?",
+      "question": "API spending rises as repeated prompts get longer. Which TWO measurements help diagnose the cost?",
       "options": [
-        "Input and output token usage by request and model pricing",
-        "Only the number of repository commits",
-        "Only the user's screen resolution",
-        "The number of tool names declared, ignoring token cost"
+        "Input/output token usage by model and applicable price.",
+        "The count of Git commits in the repository.",
+        "Cache-read and cache-write token usage for repeated prefixes.",
+        "The number of CSS rules on the application page."
       ],
       "correct": [
-        0
+        0,
+        2
       ],
-      "explanation": "Cost diagnosis depends on billed token categories, price tiers and request volumes."
+      "explanation": "Usage categories, per-model pricing and cache metrics identify the actual charged workload."
     },
     {
       "id": "d5-02",
@@ -742,17 +753,18 @@
       "id": "d5-05",
       "domain": 5,
       "module": 1,
-      "question": "A request exceeds a model's supported context capacity. What can the application do?",
+      "question": "A conversation approaches the model's context limit. Which TWO responses are reasonable?",
       "options": [
-        "Reduce or summarize context while retaining essential information",
-        "Assume the model will silently process unlimited input",
-        "Send the entire history repeatedly without limits",
-        "Rewrite tool identifiers to gain more context"
+        "Summarize historical context while retaining key decisions.",
+        "Retrieve relevant information instead of resending all old messages.",
+        "Assume the model accepts unlimited history.",
+        "Rewrite tool IDs to make room for more tokens."
       ],
       "correct": [
-        0
+        0,
+        1
       ],
-      "explanation": "Model context limits require deliberate truncation, retrieval or summarization strategies."
+      "explanation": "Summarization and selective retrieval keep needed context within supported limits."
     },
     {
       "id": "d5-06",
@@ -838,17 +850,18 @@
       "id": "d6-02",
       "domain": 6,
       "module": 2,
-      "question": "An application uses examples to teach a prompt how to classify ambiguous customer tickets. Which example set is more helpful?",
+      "question": "A prompt must classify ambiguous support tickets accurately. Which TWO changes can help?",
       "options": [
-        "Examples across all classes including ambiguous boundaries",
-        "Five identical examples of the easiest class",
-        "Only an example unrelated to the task",
-        "Examples with contradictory labels and no explanation"
+        "Add representative examples across categories and edge cases.",
+        "Supply five copies of the easiest category only.",
+        "Use examples with inconsistent labels and no policy.",
+        "Define precedence rules for overlapping categories."
       ],
       "correct": [
-        0
+        0,
+        3
       ],
-      "explanation": "Representative examples and explicit precedence rules clarify the desired mapping."
+      "explanation": "Varied examples and explicit tie-breaking rules reduce ambiguity in classification."
     },
     {
       "id": "d6-03",
@@ -870,17 +883,18 @@
       "id": "d6-04",
       "domain": 6,
       "module": 2,
-      "question": "A developer needs guaranteed supported JSON structure from Claude. What is the most appropriate design?",
+      "question": "A service must consume reliable machine-readable JSON from Claude. Which TWO measures should it take?",
       "options": [
-        "Use supported structured output plus application validation",
-        "Rely on polite wording alone as a parser guarantee",
-        "Set a larger context window instead of a schema",
-        "Parse the first incomplete streaming fragment as final JSON"
+        "Use supported structured JSON output and validate the result.",
+        "Assume polite wording alone guarantees parseable JSON.",
+        "Increase context length instead of defining output fields.",
+        "Enforce additional business rules and required semantics in application code."
       ],
       "correct": [
-        0
+        0,
+        3
       ],
-      "explanation": "Structured output constrains supported format; semantic and authorization checks remain application responsibilities."
+      "explanation": "Supported grammar constraints and separate business-rule validation address complementary failure modes."
     },
     {
       "id": "d6-05",
@@ -1030,17 +1044,18 @@
       "id": "d7-03",
       "domain": 7,
       "module": 4,
-      "question": "A developer accidentally prints an Anthropic API key into an application log. What should the team do?",
+      "question": "An API credential has been exposed in application logs. Which TWO responses are appropriate?",
       "options": [
-        "Revoke or rotate the exposed credential and restrict log access",
-        "Assume base64 encoding will make it harmless",
-        "Copy the key into a public issue for debugging",
-        "Ignore it if the application still responds correctly"
+        "Revoke or rotate the exposed credential.",
+        "Restrict access to affected logs and follow incident procedures.",
+        "Paste the key into a public issue to solicit debugging help.",
+        "Ignore the exposure if the application still works."
       ],
       "correct": [
-        0
+        0,
+        1
       ],
-      "explanation": "Exposed credentials require prompt remediation, rotation and containment."
+      "explanation": "Credential rotation and log-access containment are both necessary responses to exposure."
     },
     {
       "id": "d7-04",
@@ -1094,17 +1109,18 @@
       "id": "d8-02",
       "domain": 8,
       "module": 3,
-      "question": "A local MCP server uses stdio transport. Where should ordinary diagnostic logs go?",
+      "question": "A local MCP server uses stdio transport. Which TWO logging rules prevent protocol corruption?",
       "options": [
-        "stderr, keeping stdout reserved for protocol traffic",
-        "stdout mixed with JSON-RPC messages",
-        "An arbitrary line inside a tool result ID",
-        "The client's authentication header"
+        "Send diagnostic logs to stderr.",
+        "Reserve stdout for valid MCP protocol messages.",
+        "Put arbitrary log lines inside tool-use identifiers.",
+        "Replace the protocol stream with an authentication header."
       ],
       "correct": [
-        0
+        0,
+        1
       ],
-      "explanation": "Stdio MCP protocol messages use stdout; unrelated logs should not corrupt that stream."
+      "explanation": "Stdio MCP uses stdout for protocol data; unrelated diagnostic messages belong on stderr."
     },
     {
       "id": "d8-03",
@@ -1158,17 +1174,18 @@
       "id": "d8-06",
       "domain": 8,
       "module": 3,
-      "question": "An MCP tool's input matches its JSON Schema but targets a resource the user cannot access. What should happen?",
+      "question": "An MCP tool call is schema-valid but requests another tenant's private record. Which TWO server behaviors are appropriate?",
       "options": [
-        "The server enforces authorization and rejects unauthorized access",
-        "Schema validity alone grants permission",
-        "The client must ignore the target service's policies",
-        "The tool should silently switch to another user's identity"
+        "Deny access based on the caller's actual authorization.",
+        "Assume schema validity grants resource permission.",
+        "Silently impersonate the requested tenant.",
+        "Return a safe denial and retain a suitable audit event."
       ],
       "correct": [
-        0
+        0,
+        3
       ],
-      "explanation": "Schemas validate structure, while servers and target systems enforce security boundaries."
+      "explanation": "MCP servers must enforce authorization independently of input-schema validation and handle denials safely."
     },
     {
       "id": "d8-07",
