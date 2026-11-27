@@ -2,15 +2,21 @@
 
 This is a **new public repository**, not a fork, mirror, or branch of a personal study workspace.
 
-- [ ] Review all text, code, links, and images for copyright, privacy, and confidential information.
-- [ ] Confirm all questions are independently authored rather than copied from restricted lessons or an official exam.
-- [ ] Never copy the private workspace's Git history.
-- [ ] Never publish personal notebooks, review ledgers, draft notes, or internal documents.
-- [ ] Verify fixtures contain only fictional data; no credentials or live endpoints.
-- [ ] Check links that refer to private documents and remove or rewrite them.
-- [ ] Verify MkDocs and Python tests pass.
-- [ ] Select and include an open-source license before inviting public contributions.
-- [ ] Enable GitHub Pages in repository settings and verify the published URL.
-- [ ] Verify that public quizzes do not send personal results to a central server.
+- [x] Independently initialized Git history with no private notebook commits.
+- [x] Added MIT licensing for code and CC BY 4.0 for original educational content.
+- [x] Published only the allowlisted curated documents, fictional labs and tests.
+- [x] Removed source references to personal notebooks and review ledgers from published guides.
+- [ ] Verify automated CI checks remain green after each publication.
+- [ ] Enable GitHub Pages in repository settings and verify the public URL.
+- [ ] Check that public quizzes do not send personal results to a centralized server.
 
-Use a reviewed **allowlist** to move documents and labs from the private workspace into this repository. Do not automatically synchronize the full source tree.
+Before every future publication:
+
+- [ ] Verify text, code, links, and images for copyright, privacy and confidential information.
+- [ ] Confirm questions are independently authored, not copied from restricted course lessons or official exams.
+- [ ] Never transfer private notebooks, review ledgers, draft notes or Git history.
+- [ ] Inspect changed docs for links to private content, credentials or confidential identifiers.
+- [ ] Check fictional fixtures do not contain production endpoints or secrets.
+- [ ] Verify `mkdocs build --strict`, Python tests and Markdown lint.
+
+See [PUBLICATION_POLICY.md](PUBLICATION_POLICY.md) for the exact approved source-file allowlist and publication boundaries.

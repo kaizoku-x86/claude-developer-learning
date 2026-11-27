@@ -1,30 +1,63 @@
 site_name: Claude Developer Learning Hub
-site_description: Independent study materials, labs, and interactive quizzes
+site_description: Independent Claude development guides, labs and interactive quizzes
 site_url: https://kaizoku-x86.github.io/claude-developer-learning/
+docs_dir: docs
+site_dir: site
+
 theme:
   name: material
   language: en
   features:
+    - navigation.tabs
     - navigation.sections
     - navigation.indexes
+    - navigation.top
     - search.suggest
     - content.code.copy
+
 plugins:
   - search
   - mkdocs_quiz
+
 nav:
   - Home: index.md
-  - Module 2:
-      - Tool Selection: modules/02-tool-selection.md
+  - Glossary:
+      - All modules: 00-general-glossary.md
+  - Module 1 — API and Models:
+      - Module 1 glossary: 01-glossary.md
+      - Messages API: 01-messages-api.md
+  - Module 2 — Prompting and Agents:
+      - Module 2 glossary: 02-glossary.md
+      - Tool Use and Agents: 02-prompting-agents-tools.md
+      - Structured Outputs: 02-structured-outputs.md
+      - Tool Selection guide: modules/02-tool-selection.md
+  - Module 3 — Claude Code and MCP:
+      - Module 3 glossary: 03-glossary.md
+      - Claude Code and MCP: 03-claude-code-mcp.md
+      - Claude Products: 03-claude-products.md
+  - Module 4 — Production:
+      - Governance glossary: 04-glossary.md
+      - Evals and Security: 04-production-evals-security.md
+  - Module 5 — Reuse:
+      - Module 5 glossary: 05-glossary.md
+      - Accelerators and IP: 05-accelerators-ip.md
   - Practice:
-      - Overview: quizzes/index.md
+      - Quiz Overview: quizzes/index.md
       - Tool Selection: quizzes/02-tool-selection.md
       - Streaming and Tool Use: quizzes/02-streaming.md
       - MCP Concepts: quizzes/03-mcp.md
   - Labs: labs.md
+  - Capstone: 07-architecture-case.md
+
 markdown_extensions:
   - admonition
   - tables
+  - toc:
+      permalink: true
   - pymdownx.superfences
   - pymdownx.details
   - pymdownx.highlight
+  - pymdownx.inlinehilite
+
+extra_css:
+  - assets/stylesheets/extra.css

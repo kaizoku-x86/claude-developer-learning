@@ -1,32 +1,38 @@
 # Claude Developer Learning Hub
 
-An **independent, community-maintained study resource** for Claude development: technical guides, offline labs, and interactive practice quizzes.
+Independent, community-maintained study resources for Claude development: curated reference guides, reproducible labs and interactive practice quizzes.
 
-This project is not affiliated with or endorsed by Anthropic. Questions are independently authored for practice; they are not official certification questions.
+**Not official Anthropic certification content.** This project is not affiliated with or endorsed by Anthropic; practice questions are independently authored.
 
-## What's included
+## Explore
 
-- Curated technical documentation with official references
-- Interactive quizzes with answer explanations
-- Reproducible offline labs and Python tests
-- A static documentation site built with MkDocs
+- [Complete study guide](https://kaizoku-x86.github.io/claude-developer-learning/)
+- [Module 2 — Tool Use and Agents](docs/02-prompting-agents-tools.md)
+- [Interactive quizzes](docs/quizzes/index.md)
+- [Offline and API labs](docs/labs.md)
 
-## Develop locally
+## Local setup
 
 ```bash
 python -m pip install -r requirements-docs.txt -r requirements-labs.txt
-python -m mkdocs serve
 python -m pytest -q
+python -m mkdocs serve
 ```
 
-Visit <http://127.0.0.1:8000/> to explore the learning site.
+Visit <http://127.0.0.1:8000/>. API and MCP-specific labs have optional dependencies in `requirements-api.txt`.
 
-## Publishing and contribution policy
+## Content policy
 
-This is a new public repository with independent Git history. Never copy private notes, verification logs, credentials, or material from restricted courses. Publish only reviewed and original material.
+Only reviewed and explicitly allowlisted materials are published from the separate private study workspace. Personal notebooks, verification registers and Git history are never transferred. The original practice questions and public guides can be edited independently of that source.
 
-Study content and exercises are in English. Prefer practical scenarios, clear explanations, and references to official documentation. A community license will be selected before accepting external contributions.
+See [Publication Policy](PUBLICATION_POLICY.md), [Publication Checklist](PUBLICATION_CHECKLIST.md) and [Contribution Guide](CONTRIBUTING.md).
 
-To enable GitHub Pages, choose **Settings → Pages → Build and deployment → Source: GitHub Actions**, then run the deployment workflow.
+## License
 
-See [PUBLICATION_CHECKLIST.md](PUBLICATION_CHECKLIST.md) before publishing new material.
+- **Software, labs, tests and configuration:** [MIT](LICENSE).
+- **Original educational guides, glossary text and practice questions:** [Creative Commons Attribution 4.0 International](LICENSE-DOCS.md).
+- Linked external works retain their own terms.
+
+## GitHub Pages
+
+Enable **Settings → Pages → Build and deployment → GitHub Actions**. The repository's Pages workflow will then deploy the MkDocs site from `master`.
