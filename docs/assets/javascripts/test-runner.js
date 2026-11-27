@@ -203,11 +203,23 @@
       const details = el("details", "ct-review-item");
       const summary = el("summary", "", (answer.isCorrect ? "✓ " : "✗ ") + (i + 1) + ". " + q.question);
       details.append(summary);
-      details.append(el("p", "", "Your answer: " + (answer.selected.length ? answer.selected.map(x => String.fromCharCode(65 + x)).join(", ") : "Not answered")));
+      const options = el("ol", "ct-review-options");
+      q.options.forEach((option, optionIndex) => {
+        const label = el("li", answer.correct.includes(optionIndex) ? "ct-key-option" : "", option);
+        if (answer.selected.includes(optionIndex)) {
+          label.append(el("strong", "ct-your-choice", " · Your selection"));
+        }
+        if (answer.correct.includes(optionIndex)) {
+          label.append(el("strong", "ct-correct-choice", " · Correct"));
+        }
+        options.append(label);
+      });
+      details.append(options);
       details.append(el("p", "", "Correct answer: " + answer.correct.map(x => String.fromCharCode(65 + x)).join(", ")));
       details.append(el("p", "", q.explanation));
-      root.append(details);
+      review.append(details);
     });
+    root.append(review);
     const actions = el("div", "ct-actions");
     actions.append(button("Try another test", () => {
       if (window.confirm("Start a new attempt? Your last attempt will be replaced.")) {
