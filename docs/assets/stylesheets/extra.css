@@ -1,0 +1,8 @@
+:root {
+  --md-text-font: "Roboto";
+  --md-code-font: "Roboto Mono";
+}
+.md-typeset h1 { font-weight: 700; letter-spacing: -.02em; }
+.md-typeset h2 { font-weight: 650; }
+.md-typeset table:not([class]) { display: table; width: 100%; }
+.md-typeset code { font-size: .88em; }
