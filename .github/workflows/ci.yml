@@ -23,6 +23,14 @@ jobs:
         run: python scripts/check_public_tree.py
       - name: Run offline lab tests
         run: python -m pytest -q
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate exam JavaScript and question bank
+        run: |
+          node --check docs/assets/javascripts/test-core.js
+          node --check docs/assets/javascripts/test-runner.js
+          node --test tests_js/*.test.cjs
       - name: Build documentation
         run: mkdocs build --strict
       - name: Lint Markdown
