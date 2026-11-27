@@ -31,3 +31,7 @@
 .ct-review-item summary { cursor: pointer; font-weight: 500; }
 .ct-error { color: #c44c30; }
 .ct-sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+.ct-review-options { padding-left: 1.5rem; margin: .7rem 0; }
+.ct-review-options li { padding: .2rem 0; }
+.ct-key-option { color: var(--md-accent-fg-color); }
+.ct-your-choice, .ct-correct-choice { font-size: .78rem; font-weight: 600; }
