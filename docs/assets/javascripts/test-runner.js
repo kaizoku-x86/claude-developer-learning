@@ -29,26 +29,37 @@
   function clear() {
     try { window.localStorage.removeItem(storageKey); } catch (_e) {}
   }
+  function orderedQuestion(q, seed) {
+    let h = seed >>> 0;
+    for (const char of q.id) h = (((h * 33) >>> 0) ^ char.charCodeAt(0)) >>> 0;
+    const order = core.seedShuffle([0, 1, 2, 3], h);
+    return {
+      ...q,
+      options: order.map(i => q.options[i]),
+      correct: q.correct.map(i => order.indexOf(i)).sort((a, b) => a - b)
+    };
+  }
   function prepare(loaded) {
-    if (!loaded || !Array.isArray(loaded.ids) || loaded.ids.length < 1 ||
+    if (!loaded || !Number.isInteger(loaded.seed) || !Array.isArray(loaded.ids) || loaded.ids.length < 1 ||
       !loaded.ids.every(id => bank.some(q => q.id === id))) return false;
     if (loaded.kind === "exam") {
       if (!core.EXAMS[loaded.version] || loaded.ids.length !== core.EXAMS[loaded.version].count ||
         !Number.isFinite(loaded.deadline)) return false;
     } else if (loaded.kind !== "module" || !Number.isInteger(loaded.module)) return false;
     session = loaded;
-    questions = loaded.ids.map(id => bank.find(q => q.id === id));
+    questions = loaded.ids.map(id => orderedQuestion(bank.find(q => q.id === id), loaded.seed || 0));
     index = Math.min(Math.max(Number(loaded.index) || 0, 0), questions.length - 1);
     finished = Boolean(loaded.completed);
     return true;
   }
   function start(kind, value) {
     const seed = Math.floor(Math.random() * 4294967295);
-    questions = kind === "exam" ? core.selectExam(bank, value, seed) : core.selectModule(bank, Number(value), seed);
+    const selected = kind === "exam" ? core.selectExam(bank, value, seed) : core.selectModule(bank, Number(value), seed);
+    questions = selected.map(q => orderedQuestion(q, seed));
     session = {
       kind, version: kind === "exam" ? value : null,
       module: kind === "module" ? Number(value) : null,
-      ids: questions.map(q => q.id), index: 0, answers: {},
+      ids: questions.map(q => q.id), seed, index: 0, answers: {},
       flagged: [], started: Date.now(),
       deadline: kind === "exam" ? Date.now() + core.EXAMS[value].minutes * 60000 : null,
       completed: false, finishedReason: null
