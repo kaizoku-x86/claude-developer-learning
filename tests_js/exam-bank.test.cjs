@@ -8,8 +8,14 @@ const bank = data.questions;
 
 test("bank validates all original questions and has no duplicates", () => {
   assert.equal(core.validateBank(bank), true);
-  assert.equal(bank.length, 74);
-  assert.equal(new Set(bank.map(q => q.question)).size, 74);
+  assert(bank.length >= 74);
+  const normalize = value => value.normalize("NFKC").trim().replace(/\s+/g, " ").toLowerCase();
+  assert.equal(new Set(bank.map(q => normalize(q.question))).size, bank.length);
+  for (const q of bank) {
+    assert.equal(typeof q.question, "string");
+    assert(q.question.trim());
+    assert.equal(new Set(q.options.map(normalize)).size, 4, q.id);
+  }
 });
 
 for (const [version, spec] of Object.entries(core.EXAMS)) {
