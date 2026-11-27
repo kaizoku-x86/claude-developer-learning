@@ -1,0 +1,30 @@
+site_name: Claude Developer Learning Hub
+site_description: Independent study materials, labs, and interactive quizzes
+site_url: https://kaizoku-x86.github.io/claude-developer-learning/
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.sections
+    - navigation.indexes
+    - search.suggest
+    - content.code.copy
+plugins:
+  - search
+  - mkdocs_quiz
+nav:
+  - Home: index.md
+  - Module 2:
+      - Tool Selection: modules/02-tool-selection.md
+  - Practice:
+      - Overview: quizzes/index.md
+      - Tool Selection: quizzes/02-tool-selection.md
+      - Streaming and Tool Use: quizzes/02-streaming.md
+      - MCP Concepts: quizzes/03-mcp.md
+  - Labs: labs.md
+markdown_extensions:
+  - admonition
+  - tables
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.highlight
