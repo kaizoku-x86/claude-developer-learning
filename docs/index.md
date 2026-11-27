@@ -19,11 +19,7 @@
 
 ## Interactive practice
 
-Practice with immediate explanations. No Claude API key is needed.
-
-- [Tool Selection](quizzes/02-tool-selection.md)
-- [Streaming and Tool Use](quizzes/02-streaming.md)
-- [MCP Concepts](quizzes/03-mcp.md)
+Choose [tests by module](tests/modules.md) for untimed practice or [full mock exams](tests/full-exams.md) for timed attempts matching the official exam's item counts. Short [topic drills](quizzes/index.md) are also available. No Claude API key is required.
 
 ## Hands-on labs
 

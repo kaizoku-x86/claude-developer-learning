@@ -12,7 +12,7 @@ This is a **guided learning resource**, not a single book you must read from beg
 | **Modules** | Curated explanations, technical examples, common mistakes, and official references. | Your **main reading material**. Work through Modules 1–5 in order if you are new to the topics. |
 | **Glossaries** | A [general glossary](00-general-glossary.md) and [module-specific terms](01-glossary.md). | Look up unfamiliar terms while reading; revisit them after each module. |
 | **Labs** | [Hands-on exercises](labs.md) with Python examples, fictional data, and automated tests. | Apply a concept after reading it. Most exercises work locally without access to Claude or production systems. |
-| **Tests** | [Interactive practice questions](quizzes/index.md) with answer explanations. | Check your understanding, analyze incorrect answers, and return to the relevant guide. |
+| **Tests** | [Module practice](tests/modules.md), [timed mock exams](tests/full-exams.md), and [short topic drills](quizzes/index.md). | Practice without a timer, then rehearse the full exam with a 120-minute countdown. |
 | **Capstone** | An [architecture case](07-architecture-case.md) connecting topics from several modules. | Attempt it after studying the foundations; explain your design choices and trade-offs. |
 
 ## Recommended learning routine
@@ -24,8 +24,8 @@ This is a **guided learning resource**, not a single book you must read from beg
 5. **Review the official references.** Especially for model-specific features or API behavior that may change over time.
 6. **Move on or revisit.** Continue to the next module, or repeat the exercise with a new scenario until you can explain *why* the solution works.
 
-!!! info "Not all modules have quizzes yet"
-    The public question bank is being expanded. The current interactive quizzes cover **Tool Selection**, **Streaming and Tool Use**, and **MCP Concepts**. You can still study Modules 1, 4, and 5 using their guides, glossaries, and relevant labs.
+!!! info "Practice coverage"
+    Every course module has an untimed test, and two full-length practice formats are available for CCDV-F. The question bank is original study material, not official exam items, and the public bank will continue to grow and be reviewed.
 
 ## Suggested path through the modules
 
@@ -56,7 +56,7 @@ For full setup and lab descriptions, see [Hands-on Labs](labs.md).
 
 ## How to use the practice tests
 
-Open [Interactive Practice](quizzes/index.md), select a topic, answer the questions, and examine the explanations. Some questions test the best response to a scenario, while others ask which statements are correct. The goal is to understand the reasoning, not only the final option.
+Start with [Tests by Module](tests/modules.md) for untimed checks. Use [Full Mock Exams](tests/full-exams.md) to practice 53-question or 70-question CCDV-F formats with a 120-minute countdown. The exam mode saves progress in your browser, allows you to flag questions, and displays explanations when you submit or run out of time. For quick review, use [Topic Drills](quizzes/index.md). The goal is to understand the reasoning, not only the final option.
 
 The questions are **independently authored practice material**. They are not taken from an official Anthropic certification exam, and the site does not issue a certification.
 

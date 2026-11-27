@@ -62,11 +62,12 @@ nav:
       - Lab overview: labs.md
       - Architecture capstone: 07-architecture-case.md
   - Tests:
-      - Quiz overview: quizzes/index.md
-      - Module 2:
+      - Overview: tests/index.md
+      - Module tests: tests/modules.md
+      - Full mock exams: tests/full-exams.md
+      - Topic drills:
           - Tool Selection: quizzes/02-tool-selection.md
           - Streaming and Tool Use: quizzes/02-streaming.md
-      - Module 3:
           - MCP Concepts: quizzes/03-mcp.md
 markdown_extensions:
   - admonition
@@ -80,3 +81,8 @@ markdown_extensions:
 
 extra_css:
   - assets/stylesheets/extra.css
+  - assets/stylesheets/tests.css
+
+extra_javascript:
+  - assets/javascripts/test-core.js
+  - assets/javascripts/test-runner.js
